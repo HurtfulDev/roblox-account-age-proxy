@@ -6,7 +6,6 @@ app.get("/", (req, res) => {
   res.send("Roblox Account Age Proxy is running!");
 });
 
-// UPDATED ACCOUNT-AGE ENDPOINT!
 app.get("/account-age", async (req, res) => {
   const username = req.query.username;
   if (!username) {
@@ -57,10 +56,11 @@ app.get("/account-age", async (req, res) => {
     }
 
     // Success!
-    console.log(`[DEBUG] Success for ${username}: created on ${detailsData.created}`);
+    console.log(`[DEBUG] Success for ${username}: created on ${detailsData.created}, userId: ${userId}`);
     return res.json({
       username: detailsData.name,
       created: detailsData.created,
+      userId: userId // <-- Send userId for avatar!
     });
   } catch (err) {
     console.error("[DEBUG] Error during fetch:", err);
